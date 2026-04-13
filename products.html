@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<marquee>Welcome to Fresh Basket UG – Fresh produce delivered to your doorstep!</marquee>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fresh Basket UG – Products</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green:     #2d6a2d;
+      --green-mid: #4a9c3f;
+      --green-lt:  #d4edda;
+      --orange:    #e8821a;
+      --cream:     #fdf9f2;
+      --dark:      #1a2e1a;
+      --text:      #2c3e2c;
+      --muted:     #6b7c6b;
+      --white:     #ffffff;
+      --radius:    14px;
+      --shadow:    0 4px 24px rgba(45,106,45,0.13);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
+
+    /* NAV */
+    nav {
+      background: var(--dark); padding: 0 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--white); }
+    .logo span { color: var(--orange); }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul a { color: #cde8cd; text-decoration: none; font-size: .95rem; font-weight: 500; transition: color .2s; }
+    nav ul a:hover, nav ul a.active { color: var(--orange); }
+    .nav-cta {
+      background: var(--orange); color: var(--white); padding: 9px 22px;
+      border-radius: 30px; font-weight: 600; text-decoration: none; font-size: .9rem; transition: background .2s;
+    }
+    .nav-cta:hover { background: #c96e10; }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: linear-gradient(135deg, #1a3d1a, #2d6a2d);
+      padding: 60px 6% 50px; text-align: center;
+    }
+    .page-header .section-label { color: #9fc99f; font-weight: 700; font-size: .82rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: 12px; }
+    .page-header p { color: #c5e0c5; font-size: 1.05rem; max-width: 540px; margin: 0 auto; line-height: 1.7; }
+
+    /* FILTER TABS */
+    .filter-bar { background: var(--white); padding: 22px 6%; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; border-bottom: 2px solid var(--green-lt); }
+    .filter-btn {
+      padding: 9px 22px; border-radius: 30px; font-size: .9rem; font-weight: 600;
+      border: 2px solid var(--green-lt); background: var(--white); color: var(--text);
+      cursor: pointer; transition: all .2s;
+    }
+    .filter-btn.active, .filter-btn:hover { background: var(--green); color: var(--white); border-color: var(--green); }
+
+    /* PRODUCTS GRID */
+    .products-section { padding: 60px 6%; }
+    .category-label {
+      font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--dark);
+      margin-bottom: 28px; padding-bottom: 12px;
+      border-bottom: 3px solid var(--green-lt);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 26px; margin-bottom: 60px; }
+    .product-card {
+      background: var(--white); border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07); transition: transform .25s, box-shadow .25s;
+      position: relative;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 14px 36px rgba(45,106,45,.15); }
+    .product-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .badge-tag {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--orange); color: var(--white);
+      font-size: .75rem; font-weight: 700; padding: 4px 10px; border-radius: 20px;
+    }
+    .badge-tag.fresh { background: var(--green); }
+    .product-info { padding: 18px 20px 22px; }
+    .product-info h3 { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .product-info .desc { color: var(--muted); font-size: .87rem; line-height: 1.55; margin-bottom: 12px; }
+    .price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .price { color: var(--green); font-weight: 700; font-size: 1.1rem; }
+    .old-price { text-decoration: line-through; color: var(--muted); font-size: .88rem; }
+    .unit { color: var(--muted); font-size: .82rem; }
+    .add-btn {
+      display: block; width: 100%; background: var(--green); color: var(--white);
+      border: none; border-radius: 8px; padding: 11px; font-size: .9rem;
+      font-weight: 600; cursor: pointer; text-decoration: none; text-align: center; transition: background .2s;
+    }
+    .add-btn:hover { background: var(--green-mid); }
+
+    /* INFO STRIP */
+    .info-strip {
+      background: var(--green); padding: 40px 6%;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; text-align: center;
+    }
+    .info-item h4 { color: var(--white); font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+    .info-item p { color: #c5e0c5; font-size: .9rem; }
+
+    /* FOOTER */
+    footer { background: var(--dark); padding: 60px 6% 30px; color: #9fc99f; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 40px; }
+    .footer-brand .logo { font-size: 1.4rem; display: block; margin-bottom: 14px; }
+    .footer-brand p { font-size: .93rem; line-height: 1.7; color: #7a9a7a; }
+    footer h4 { color: var(--white); font-size: .95rem; margin-bottom: 16px; font-weight: 700; }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 9px; }
+    footer ul a { color: #7a9a7a; text-decoration: none; font-size: .9rem; transition: color .2s; }
+    footer ul a:hover { color: var(--orange); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; text-align: center; font-size: .85rem; color: #5a7a5a; }
+
+    @media(max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Fresh<span>Basket</span> UG</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="order.html">Order</a></li>
+  </ul>
+  <a href="order.html" class="nav-cta">Order Now</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <p class="section-label">Our Produce 🥦</p>
+  <h1>Fresh Fruits &amp; Vegetables</h1>
+  <p>Hand-picked, farm-fresh produce available for delivery in Kampala. All prices include delivery.</p>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span style="font-weight:700;color:var(--dark);margin-right:8px;">Filter:</span>
+  <button class="filter-btn active">All Products</button>
+  <button class="filter-btn">🍌 Fruits</button>
+  <button class="filter-btn">🥬 Vegetables</button>
+  <button class="filter-btn">🌿 Leafy Greens</button>
+  <button class="filter-btn">🧅 Onions &amp; Roots</button>
+</div>
+
+<!-- PRODUCTS SECTION -->
+<div class="products-section">
+
+  <!-- FRUITS -->
+  <h2 class="category-label">🍌 Fresh Fruits</h2>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&auto=format&fit=crop" alt="Bananas"/>
+      <span class="badge-tag fresh">Best Seller</span>
+      <div class="product-info">
+        <h3>Sweet Bananas</h3>
+        <p class="desc">Ripe, sweet Ugandan bananas sourced fresh from Mbarara farms.</p>
+        <div class="price-row">
+          <span class="price">UGX 3,500</span>
+          <span class="old-price">UGX 4,500</span>
+          <span class="unit">/ bunch</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1547514701-42782101795e?w=400&auto=format&fit=crop" alt="oranges"/>
+      <span class="badge-tag">Seasonal</span>
+      <div class="product-info">
+        <h3>Sweet Oranges</h3>
+        <p class="desc">Juicy, Oranges from Eastern Uganda. Perfect for eating fresh or juicing.</p>
+        <div class="price-row">
+          <span class="price">UGX 6,000</span>
+          <span class="unit">/ kg</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&auto=format&fit=crop" alt="Watermelon"/>
+      <div class="product-info">
+        <h3>Fresh Watermelon</h3>
+        <p class="desc">Sweet Watermelon from Kayunga. Rich in Vitamin C.</p>
+        <div class="price-row">
+          <span class="price">UGX 5,500</span>
+          <span class="unit">/ piece</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+<div class="product-card">
+      <img src="soursop.jpg"/>
+      <div class="product-info">
+        <h3>Soursop</h3>
+        <p class="desc">Sweet Soursop from Northern Uganda. Rich in Vitamin C.</p>
+        <div class="price-row">
+          <span class="price">UGX 1,500</span>
+          <span class="unit">/ piece</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+
+    <div class="product-card">
+      <img src="blueberries.jpg"/>
+      <span class="badge-tag fresh">Fresh</span>
+      <div class="product-info">
+        <h3>Juicy Blueberries</h3>
+        <p class="desc">Freshly picked Ugandan blueberries.</p>
+        <div class="price-row">
+          <span class="price">UGX 4,500</span>
+          <span class="unit">/ kg</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="passionfruit.jpeg">       <div class="product-info">
+        <h3>Passion Fruits</h3>
+        <p class="desc">Tangy and sweet passion fruits, great for juice blends and desserts.</p>
+        <div class="price-row">
+          <span class="price">UGX 5,000</span>
+          <span class="unit">/ kg</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+     </div>
+
+  <!-- VEGETABLES -->
+  <h2 class="category-label">🥬 Fresh Vegetables</h2>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <img src="tomatoes.jpg"/>
+      <span class="badge-tag fresh">Best Seller</span>
+      <div class="product-info">
+        <h3>Fresh Tomatoes</h3>
+        <p class="desc">Firm, ripe tomatoes ideal for cooking, salads, and sauces.</p>
+        <div class="price-row">
+          <span class="price">UGX 4,000</span>
+          <span class="unit">/ kg</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=400&auto=format&fit=crop" alt="Onions"/>
+      <div class="product-info">
+        <h3>Red Onions</h3>
+        <p class="desc">Quality red onions sourced from Mbale. Great flavour for all dishes.</p>
+        <div class="price-row">
+          <span class="price">UGX 3,500</span>
+          <span class="unit">/ kg</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="cabbage.jpg"/>
+      <span class="badge-tag fresh">Fresh</span>
+      <div class="product-info">
+        <h3>Green Cabbage</h3>
+        <p class="desc">Crisp and fresh cabbages, perfect for stews, salads, and stir-fries.</p>
+        <div class="price-row">
+          <span class="price">UGX 4,500</span>
+          <span class="unit">/ head</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="spinach.jpg"/>
+      <div class="product-info">
+        <h3>Fresh Spinach</h3>
+        <p class="desc">Tender dark-green spinach leaves. Packed with iron and nutrients.</p>
+        <div class="price-row">
+          <span class="price">UGX 2,500</span>
+          <span class="unit">/ bundle</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="pepper.jpg"/>
+      <div class="product-info">
+        <h3>Green Pepper</h3>
+        <p class="desc">Fresh green bell peppers — crunchy, colourful and full of flavour.</p>
+        <div class="price-row">
+          <span class="price">UGX 3,000</span>
+          <span class="unit">/ 4 pieces</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="carrots.jpeg"/>
+      <span class="badge-tag fresh">Popular</span>
+      <div class="product-info">
+        <h3>Fresh Carrots</h3>
+        <p class="desc">Sweet, firm carrots — great for soups, juice, and side dishes.</p>
+        <div class="price-row">
+          <span class="price">UGX 3,000</span>
+          <span class="unit">/ kg</span>
+        </div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="info-item"><h4>100%</h4><p>Fresh, Natural Produce</p></div>
+  <div class="info-item"><h4>50+</h4><p>Products Available</p></div>
+  <div class="info-item"><h4>Same Day</h4><p>Delivery in Kampala</p></div>
+  <div class="info-item"><h4>500+</h4><p>Happy Customers</p></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">Fresh<span>Basket</span> UG</span>
+      <p>Uganda's trusted online marketplace for fresh fruits and vegetables. Sourced from local farmers, delivered to your doorstep.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="order.html">Order Now</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="#">📍 Kampala, Uganda</a></li>
+        <li><a href="tel:+256743043636">📞 +256 743043636</a></li>
+        <li><a href="mailto:info@freshbasketug.com">✉️ freshbasketug1@gmail.com</a></li>
+        <li><a href="https://wa.me/256743043636">💬 WhatsApp Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Fresh Basket UG. All rights reserved. | Team Greater Flamingo — Makerere University</p>
+  </div>
+</footer>
+
+</body>
+</html>

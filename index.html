@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<marquee>Welcome to Fresh Basket UG – Fresh produce delivered to your doorstep!</marquee>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fresh Basket UG – Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green:     #2d6a2d;
+      --green-mid: #4a9c3f;
+      --green-lt:  #d4edda;
+      --orange:    #e8821a;
+      --cream:     #fdf9f2;
+      --dark:      #1a2e1a;
+      --text:      #2c3e2c;
+      --muted:     #6b7c6b;
+      --white:     #ffffff;
+      --radius:    14px;
+      --shadow:    0 4px 24px rgba(45,106,45,0.13);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--dark);
+      padding: 0 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--white); letter-spacing: .5px; }
+    .logo span { color: var(--orange); }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul a { color: #cde8cd; text-decoration: none; font-size: .95rem; font-weight: 500; transition: color .2s; }
+    nav ul a:hover, nav ul a.active { color: var(--orange); }
+    .nav-cta {
+      background: var(--orange); color: var(--white); padding: 9px 22px;
+      border-radius: 30px; font-weight: 600; text-decoration: none;
+      font-size: .9rem; transition: background .2s;
+    }
+    .nav-cta:hover { background: #c96e10; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1a3d1a 0%, #2d6a2d 55%, #3d8c35 100%);
+      padding: 90px 6% 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      color: var(--white); line-height: 1.15; margin-bottom: 20px;
+    }
+    .hero-text h1 em { color: var(--orange); font-style: normal; }
+    .hero-text p { color: #c5e0c5; font-size: 1.1rem; line-height: 1.75; margin-bottom: 36px; }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--orange); color: var(--white); padding: 14px 32px;
+      border-radius: 40px; font-weight: 700; text-decoration: none; font-size: 1rem;
+      transition: transform .2s, background .2s; display: inline-block;
+    }
+    .btn-primary:hover { background: #c96e10; transform: translateY(-2px); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,.5); color: var(--white);
+      padding: 12px 30px; border-radius: 40px; font-weight: 600;
+      text-decoration: none; font-size: 1rem; transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.1); }
+    .hero-image { text-align: center; }
+    .hero-image img {
+      width: 100%; max-width: 480px; border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      object-fit: cover; height: 360px;
+    }
+
+    /* ── BADGE STRIP ── */
+    .badges {
+      background: var(--orange);
+      display: flex; justify-content: center; gap: 50px; flex-wrap: wrap;
+      padding: 18px 6%;
+    }
+    .badge { color: var(--white); font-weight: 600; font-size: .95rem; display: flex; align-items: center; gap: 8px; }
+    .badge-icon { font-size: 1.3rem; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 80px 6%; }
+    .section-label { color: var(--green-mid); font-weight: 700; font-size: .82rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--dark); margin-bottom: 14px; }
+    .section-sub { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 580px; }
+
+    /* ── FEATURES ── */
+    .features { background: var(--white); }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 28px; margin-top: 50px; }
+    .feature-card {
+      background: var(--cream); border-radius: var(--radius); padding: 32px 28px;
+      border-left: 4px solid var(--green-mid); transition: transform .2s, box-shadow .2s;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .feature-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .feature-card p { color: var(--muted); font-size: .94rem; line-height: 1.65; }
+
+    /* ── FEATURED PRODUCTS ── */
+    .products-preview { background: var(--cream); }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 50px; }
+    .product-card {
+      background: var(--white); border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07); transition: transform .25s, box-shadow .25s;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(45,106,45,.15); }
+    .product-card img { width: 100%; height: 190px; object-fit: cover; display: block; }
+    .product-info { padding: 18px 20px 20px; }
+    .product-info h3 { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .product-info .price { color: var(--green); font-weight: 700; font-size: 1.05rem; margin-bottom: 12px; }
+    .product-info .old-price { text-decoration: line-through; color: var(--muted); font-size: .88rem; margin-left: 6px; font-weight: 400; }
+    .add-btn {
+      display: block; width: 100%; background: var(--green); color: var(--white);
+      border: none; border-radius: 8px; padding: 10px; font-size: .9rem;
+      font-weight: 600; cursor: pointer; text-align: center; text-decoration: none;
+      transition: background .2s;
+    }
+    .add-btn:hover { background: var(--green-mid); }
+    .view-all-wrap { text-align: center; margin-top: 44px; }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: var(--white); }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-top: 50px; }
+    .step { text-align: center; }
+    .step-num {
+      width: 64px; height: 64px; background: var(--green); color: var(--white);
+      border-radius: 50%; font-family: 'Playfair Display', serif; font-size: 1.8rem;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
+    }
+    .step h3 { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: .93rem; line-height: 1.65; }
+
+    /* ── TESTIMONIAL ── */
+    .testimonials { background: linear-gradient(135deg, #1a3d1a, #2d6a2d); }
+    .testimonials .section-title, .testimonials .section-label { color: var(--white); }
+    .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; margin-top: 50px; }
+    .test-card {
+      background: rgba(255,255,255,.1); border-radius: var(--radius); padding: 28px;
+      border: 1px solid rgba(255,255,255,.15); backdrop-filter: blur(6px);
+    }
+    .test-card p { color: #d5ecd5; font-size: .97rem; line-height: 1.75; margin-bottom: 18px; font-style: italic; }
+    .test-author { color: var(--white); font-weight: 700; font-size: .9rem; }
+    .test-location { color: #9fc99f; font-size: .83rem; }
+    .stars { color: var(--orange); font-size: 1rem; margin-bottom: 12px; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--orange); padding: 70px 6%; text-align: center;
+    }
+    .cta-banner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--white); margin-bottom: 16px; }
+    .cta-banner p { color: rgba(255,255,255,.9); font-size: 1.05rem; margin-bottom: 34px; }
+    .cta-banner a {
+      background: var(--white); color: var(--orange); padding: 14px 38px;
+      border-radius: 40px; font-weight: 700; text-decoration: none; font-size: 1rem;
+      transition: box-shadow .2s;
+    }
+    .cta-banner a:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.2); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); padding: 60px 6% 30px; color: #9fc99f;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 40px; }
+    .footer-brand .logo { font-size: 1.4rem; display: block; margin-bottom: 14px; }
+    .footer-brand p { font-size: .93rem; line-height: 1.7; color: #7a9a7a; }
+    footer h4 { color: var(--white); font-size: .95rem; margin-bottom: 16px; font-weight: 700; }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 9px; }
+    footer ul a { color: #7a9a7a; text-decoration: none; font-size: .9rem; transition: color .2s; }
+    footer ul a:hover { color: var(--orange); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; text-align: center; font-size: .85rem; color: #5a7a5a; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 768px) {
+      .hero { grid-template-columns: 1fr; gap: 36px; padding: 60px 5% 50px; }
+      .hero-image img { max-width: 100%; height: 240px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      nav ul { display: none; }
+      .badges { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Fresh<span>Basket</span> UG</div>
+  <ul>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="order.html">Order</a></li>
+  </ul>
+  <a href="order.html" class="nav-cta">Order Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="section-label">Fresh from the Farm 🌿</p>
+    <h1>Fresh Fruits &amp; Vegetables <em>Delivered</em> to Your Doorstep</h1>
+    <p>Skip the market. Get farm-fresh produce delivered straight to your home or office in Kampala. Quality you can taste, convenience you'll love.</p>
+    <div class="hero-btns">
+      <a href="products.html" class="btn-primary">Shop Now</a>
+      <a href="about.html" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img
+      src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=700&auto=format&fit=crop"
+      alt="Fresh fruits and vegetables basket"
+    />
+  </div>
+</section>
+
+<!-- BADGE STRIP -->
+<div class="badges">
+  <div class="badge"><span class="badge-icon">🚚</span> Free Delivery in Kampala</div>
+  <div class="badge"><span class="badge-icon">🌿</span> 100% Fresh Produce</div>
+  <div class="badge"><span class="badge-icon">🤝</span> Sourced from Local Farmers</div>
+  <div class="badge"><span class="badge-icon">⏱️</span> Same-Day Delivery</div>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <p class="section-label">Why Choose Us</p>
+  <h2 class="section-title">Shopping Made Simple &amp; Fresh</h2>
+  <p class="section-sub">We bring the freshest produce from Uganda's best farmers directly to your table — fast, affordable, and hassle-free.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🥬</div>
+      <h3>Farm-Fresh Quality</h3>
+      <p>Every item is hand-picked and sourced directly from trusted local farmers across Uganda.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛵</div>
+      <h3>Fast Home Delivery</h3>
+      <p>We deliver to your doorstep in Kampala. Same-day delivery available for orders placed before 12 PM.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <h3>Affordable Prices</h3>
+      <p>By cutting out middlemen and going direct from farm to basket, we keep prices low for everyone.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <h3>Easy Online Ordering</h3>
+      <p>Order from your phone or computer anytime, anywhere. Pay via mobile money or on delivery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="products-preview">
+  <p class="section-label">Our Best Sellers</p>
+  <h2 class="section-title">Fresh Picks This Week</h2>
+  <p class="section-sub">Browse our most popular fruits and vegetables — all sourced fresh and available for delivery today.</p>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&auto=format&fit=crop" alt="Bananas"/>
+      <div class="product-info">
+        <h3>Fresh Bananas (1 Bunch)</h3>
+        <div class="price">UGX 3,500 <span class="old-price">UGX 4,500</span></div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=400&auto=format&fit=crop" alt="Tomatoes"/>
+      <div class="product-info">
+        <h3>Tomatoes (1 kg)</h3>
+        <div class="price">UGX 4,000</div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1547514701-42782101795e?w=400&auto=format&fit=crop" alt="Mangoes"/>
+      <div class="product-info">
+        <h3>Sweet Mangoes (1 kg)</h3>
+        <div class="price">UGX 6,000 <span class="old-price">UGX 7,500</span></div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&auto=format&fit=crop" alt="Pineapple"/>
+      <div class="product-info">
+        <h3>Pineapple (1 piece)</h3>
+        <div class="price">UGX 5,500</div>
+        <a href="order.html" class="add-btn">Order Now</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="view-all-wrap">
+    <a href="products.html" class="btn-primary">View All Products</a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <p class="section-label">How It Works</p>
+  <h2 class="section-title">Order in 4 Easy Steps</h2>
+  <p class="section-sub">From browsing to delivery — we make fresh produce shopping as easy as possible.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Browse Products</h3>
+      <p>Visit our Products page and explore our wide range of fresh fruits and vegetables.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Place Your Order</h3>
+      <p>Fill in our simple order form or send us a WhatsApp message with your selections.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Confirm &amp; Pay</h3>
+      <p>We confirm your order and you pay via Mobile Money (MTN/Airtel) or cash on delivery.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Receive Delivery</h3>
+      <p>Your fresh produce is packed and delivered to your door — same day or next morning!</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <p class="section-label">Happy Customers</p>
+  <h2 class="section-title">What Our Customers Say</h2>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>"Fresh Basket UG has completely changed how I shop for vegetables. The produce is always fresh and delivery is super fast!"</p>
+      <div class="test-author">Sarah Nakato</div>
+      <div class="test-location">Ntinda, Kampala</div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>"As a busy professional, I don't have time for markets. This service saves me so much time every week. Highly recommended!"</p>
+      <div class="test-author">Brian Okello</div>
+      <div class="test-location">Kololo, Kampala</div>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>"The prices are very fair and the fruits are always sweet and ripe. I've been ordering every week for 3 months now!"</p>
+      <div class="test-author">Fatuma Namukasa</div>
+      <div class="test-location">Makerere, Kampala</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Ready to Eat Fresh Today?</h2>
+  <p>Place your order now and get farm-fresh produce delivered to your door in Kampala.</p>
+  <a href="order.html">Order Now — It's Easy!</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">Fresh<span>Basket</span> UG</span>
+      <p>Uganda's trusted online marketplace for fresh fruits and vegetables. Sourced from local farmers, delivered to your doorstep.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="order.html">Order Now</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="#">📍 Kampala, Uganda</a></li>
+        <li><a href="tel:+256743043636">📞 +256 743043636</a></li>
+        <li><a href="mailto:info@freshbasketug.com">✉️ freshbasketug1@gmail.com</a></li>
+        <li><a href="https://wa.me/256743043636">💬 WhatsApp Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Fresh Basket UG. All rights reserved. | Team Greater Flamingo — Makerere University</p>
+  </div>
+</footer>
+
+</body>
+</html>

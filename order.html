@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<marquee>Welcome to Fresh Basket UG – Fresh produce delivered to your doorstep!</marquee>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fresh Basket UG – Order Now</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green:     #2d6a2d;
+      --green-mid: #4a9c3f;
+      --green-lt:  #d4edda;
+      --orange:    #e8821a;
+      --cream:     #fdf9f2;
+      --dark:      #1a2e1a;
+      --text:      #2c3e2c;
+      --muted:     #6b7c6b;
+      --white:     #ffffff;
+      --radius:    14px;
+      --shadow:    0 4px 24px rgba(45,106,45,0.13);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
+
+    nav {
+      background: var(--dark); padding: 0 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--white); }
+    .logo span { color: var(--orange); }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul a { color: #cde8cd; text-decoration: none; font-size: .95rem; font-weight: 500; transition: color .2s; }
+    nav ul a:hover, nav ul a.active { color: var(--orange); }
+    .nav-cta { background: var(--orange); color: var(--white); padding: 9px 22px; border-radius: 30px; font-weight: 600; text-decoration: none; font-size: .9rem; }
+
+    .page-header {
+      background: linear-gradient(135deg, #1a3d1a, #2d6a2d);
+      padding: 60px 6% 50px; text-align: center;
+    }
+    .page-header .label { color: #9fc99f; font-weight: 700; font-size: .82rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--white); margin-bottom: 12px; }
+    .page-header p { color: #c5e0c5; font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    /* HOW TO ORDER STRIP */
+    .order-steps {
+      background: var(--orange); padding: 28px 6%;
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+    }
+    .ostep { color: var(--white); display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: .93rem; }
+    .ostep-num { width: 28px; height: 28px; background: rgba(255,255,255,.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .85rem; flex-shrink: 0; }
+
+    /* MAIN LAYOUT */
+    .order-section { padding: 70px 6%; }
+    .order-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; align-items: start; }
+
+    /* ORDER FORM */
+    .order-form-wrap { background: var(--white); border-radius: 20px; padding: 44px 40px; box-shadow: var(--shadow); }
+    .order-form-wrap h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--dark); margin-bottom: 6px; }
+    .order-form-wrap > p { color: var(--muted); font-size: .95rem; margin-bottom: 30px; }
+    .form-section-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green); margin: 28px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--green-lt); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: .9rem; font-weight: 600; color: var(--dark); margin-bottom: 7px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 13px 16px; border: 2px solid var(--green-lt);
+      border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: .95rem;
+      color: var(--text); background: var(--cream); outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(45,106,45,.12); background: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    /* PRODUCT CHECKBOXES */
+    .product-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .product-check {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--cream); border: 2px solid var(--green-lt);
+      border-radius: 10px; padding: 10px 14px; cursor: pointer;
+      transition: border-color .2s, background .2s; user-select: none;
+    }
+    .product-check:hover { border-color: var(--green); }
+    .product-check input[type="checkbox"] { accent-color: var(--green); width: 16px; height: 16px; cursor: pointer; }
+    .product-check span { font-size: .88rem; font-weight: 500; color: var(--text); }
+    .product-check .pq {
+      margin-top: 8px; width: 100%; padding: 6px 10px; border: 1.5px solid var(--green-lt);
+      border-radius: 7px; font-size: .85rem; font-family: 'DM Sans', sans-serif;
+      background: var(--white); outline: none; display: none;
+    }
+    .product-check.checked { border-color: var(--green); background: var(--green-lt); }
+
+    /* PAYMENT SECTION */
+    .payment-opts { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
+    .pay-opt {
+      flex: 1; min-width: 120px; border: 2px solid var(--green-lt); border-radius: 10px;
+      padding: 14px; text-align: center; cursor: pointer; transition: all .2s;
+    }
+    .pay-opt:hover, .pay-opt.selected { border-color: var(--green); background: var(--green-lt); }
+    .pay-opt .pay-icon { font-size: 1.6rem; margin-bottom: 6px; }
+    .pay-opt p { font-size: .82rem; font-weight: 600; color: var(--dark); }
+
+    .submit-btn {
+      width: 100%; background: var(--green); color: var(--white);
+      border: none; border-radius: 12px; padding: 16px;
+      font-size: 1.05rem; font-weight: 700; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; transition: background .2s, transform .2s;
+      margin-top: 8px;
+    }
+    .submit-btn:hover { background: var(--green-mid); transform: translateY(-2px); }
+    .success-msg {
+      display: none; background: var(--green-lt); border: 2px solid var(--green);
+      border-radius: 12px; padding: 20px 24px; text-align: center; margin-top: 20px;
+    }
+    .success-msg h4 { color: var(--green); font-size: 1.1rem; margin-bottom: 6px; }
+    .success-msg p { color: var(--text); font-size: .95rem; }
+
+    /* SIDEBAR */
+    .order-sidebar { display: flex; flex-direction: column; gap: 24px; }
+    .sidebar-card { background: var(--white); border-radius: 20px; padding: 30px 28px; box-shadow: var(--shadow); }
+    .sidebar-card h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--dark); margin-bottom: 18px; }
+    .sidebar-card ul { list-style: none; }
+    .sidebar-card ul li { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; font-size: .93rem; color: var(--text); line-height: 1.55; }
+    .sidebar-card ul li .icon { font-size: 1.2rem; flex-shrink: 0; }
+    .payment-detail { background: var(--green-lt); border-radius: 12px; padding: 18px 20px; margin-top: 4px; }
+    .payment-detail h4 { color: var(--green); font-weight: 700; margin-bottom: 8px; font-size: .95rem; }
+    .payment-detail p { color: var(--text); font-size: .9rem; line-height: 1.6; }
+    .wa-order-btn {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      background: #25D366; color: var(--white); padding: 15px 22px;
+      border-radius: var(--radius); text-decoration: none; font-weight: 700;
+      font-size: .97rem; margin-top: 6px; transition: background .2s;
+    }
+    .wa-order-btn:hover { background: #1ebe59; }
+    .min-order { background: var(--orange); color: var(--white); border-radius: 10px; padding: 14px 16px; font-size: .9rem; font-weight: 600; text-align: center; }
+
+    footer { background: var(--dark); padding: 60px 6% 30px; color: #9fc99f; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 40px; }
+    .footer-brand .logo { font-size: 1.4rem; display: block; margin-bottom: 14px; }
+    .footer-brand p { font-size: .93rem; line-height: 1.7; color: #7a9a7a; }
+    footer h4 { color: var(--white); font-size: .95rem; margin-bottom: 16px; font-weight: 700; }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 9px; }
+    footer ul a { color: #7a9a7a; text-decoration: none; font-size: .9rem; transition: color .2s; }
+    footer ul a:hover { color: var(--orange); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; text-align: center; font-size: .85rem; color: #5a7a5a; }
+
+    @media(max-width: 900px) {
+      .order-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .product-list { grid-template-columns: 1fr; }
+      .order-form-wrap { padding: 28px 20px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Fresh<span>Basket</span> UG</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="order.html" class="active">Order</a></li>
+  </ul>
+  <a href="order.html" class="nav-cta">Order Now</a>
+</nav>
+
+<div class="page-header">
+  <p class="label">Place Your Order 🛒</p>
+  <h1>Order Fresh Produce</h1>
+  <p>Fill in the form below to place your order. We'll confirm via WhatsApp or phone call within 15 minutes.</p>
+</div>
+
+<div class="order-steps">
+  <div class="ostep"><span class="ostep-num">1</span> Fill the Order Form</div>
+  <div class="ostep">→</div>
+  <div class="ostep"><span class="ostep-num">2</span> We Confirm Your Order</div>
+  <div class="ostep">→</div>
+  <div class="ostep"><span class="ostep-num">3</span> Pay via Mobile Money</div>
+  <div class="ostep">→</div>
+  <div class="ostep"><span class="ostep-num">4</span> Receive Fresh Delivery</div>
+</div>
+
+<div class="order-section">
+  <div class="order-grid">
+
+    <!-- FORM -->
+    <div class="order-form-wrap">
+      <h2>Place Your Order</h2>
+      <p>Select your items, fill in your details, and we'll handle the rest!</p>
+
+      <form name="order-form" id="order-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="placeOrder(event)">
+        <input type="hidden" name="form-name" value="order-form" />
+        <p style="display:none"><label>Don't fill this: <input name="bot-field" /></label></p>
+        <!-- CUSTOMER DETAILS -->
+        <div class="form-section-title">👤 Your Details</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name *</label>
+            <input type="text" id="fname" name="first-name" placeholder="e.g. Sarah" required />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name *</label>
+            <input type="text" id="lname" name="last-name" placeholder="e.g. Nakato" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" placeholder="+256 7XX XXX XXX" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email (optional)</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" />
+          </div>
+        </div>
+
+        <!-- DELIVERY DETAILS -->
+        <div class="form-section-title">📍 Delivery Details</div>
+        <div class="form-group">
+          <label for="area">Delivery Area in Kampala *</label>
+          <select id="area" name="delivery-area" required>
+            <option value="">-- Select your area --</option>
+            <option>Ntinda</option>
+            <option>Kololo</option>
+            <option>Makerere</option>
+            <option>Nakawa</option>
+            <option>Bukoto</option>
+            <option>Muyenga</option>
+            <option>Kira</option>
+            <option>Naalya</option>
+            <option>Najjera</option>
+            <option>Mutungo</option>
+            <option>Bugolobi</option>
+            <option>Kisaasi</option>
+            <option>Wandegeya</option>
+            <option>Kabalagala</option>
+            <option>Other (specify below)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="address">Street / Building / Landmark *</label>
+          <input type="text" id="address" name="address" placeholder="e.g. Plot 14, Ntinda Road, next to Shell petrol station" required />
+        </div>
+        <div class="form-group">
+          <label for="delivery-time">Preferred Delivery Time *</label>
+          <select id="delivery-time" name="delivery-time" required>
+            <option value="">-- Choose a time --</option>
+            <option>Today – Morning (Before 12 PM)</option>
+            <option>Today – Afternoon (12 PM – 5 PM)</option>
+            <option>Today – Evening (5 PM – 8 PM)</option>
+            <option>Tomorrow – Morning (7 AM – 11 AM)</option>
+            <option>Tomorrow – Afternoon (12 PM – 5 PM)</option>
+          </select>
+        </div>
+
+        <!-- PRODUCT SELECTION -->
+        <div class="form-section-title">🛒 Select Products</div>
+        <p style="color:var(--muted);font-size:.88rem;margin-bottom:16px;">Tick the items you want and specify quantity (e.g. "2 kg", "3 bunches")</p>
+        <div class="product-list">
+          <label class="product-check" id="lbl-bananas">
+            <input type="checkbox" name="bananas" value="yes" onchange="toggleQty(this,'qty-bananas','lbl-bananas')" />
+            <div style="flex:1">
+              <span>🍌 Bananas — UGX 3,500/bunch</span>
+              <input type="text" class="pq" id="qty-bananas" name="bananas-qty" placeholder="Qty e.g. 2 bunches"/>
+            </div>
+          </label>
+          <label class="product-check" id="lbl-tomatoes">
+            <input type="checkbox" name="tomatoes" value="yes" onchange="toggleQty(this,'qty-tomatoes','lbl-tomatoes')" />
+            <div style="flex:1">
+              <span>🍅 Tomatoes — UGX 4,000/kg</span>
+              <input type="text" class="pq" id="qty-tomatoes" name="tomatoes-qty" placeholder="Qty e.g. 1 kg"/>
+            </div>
+          </label>
+          <label class="product-check" id="lbl-mangoes">
+            <input type="checkbox" name="mangoes" value="yes" onchange="toggleQty(this,'qty-mangoes','lbl-mangoes')" />
+            <div style="flex:1">
+              <span>🥭 Mangoes — UGX 6,000/kg</span>
+              <input type="text" class="pq" id="qty-mangoes" name="mangoes-qty" placeholder="Qty e.g. 2 kg"/>
+            </div>
+          </label>
+          <label class="product-check" id="lbl-pineapple">
+            <input type="checkbox" name="pineapple" value="yes" onchange="toggleQty(this,'qty-pineapple','lbl-pineapple')" />
+            <div style="flex:1">
+              <span>🍍 Pineapple — UGX 5,500/pc</span>
+              <input type="text" class="pq" id="qty-pineapple" name="pineapple-qty" placeholder="Qty e.g. 2 pieces"/>
+            </div>
+          </label>
+          <label class="product-check" id="lbl-oranges">
+            <input type="checkbox" name="oranges" value="yes" onchange="toggleQty(this,'qty-oranges','lbl-oranges')" />
+            <div style="flex:1">
+              <span>🍊 Oranges — UGX 4,500/kg</span>
+              <input type="text" class="pq" id="qty-oranges" name="oranges-qty" placeholder="Qty e.g. 1 kg"/>
+            </div>
+          </label>
+          <label class="product-check" id="lbl-onions">
+            <input type="checkbox" name="onions" value="yes" onchange="toggleQty(this,'qty-onions','lbl-onions')" />
+            <div style="flex:1">
+              <span>🧅 Red Onions — UGX 3,500/kg</span>
+              <input type="text" class="pq" id="qty-onions" name="onions-qty" placeholder="Qty e.g. 1 kg"/>
+            </div>
+          </label>
+          <label class="product-check" id="lbl-cabbage">
+            <input type="checkbox" name="cabbage" value="yes" onchange="toggleQty(this,'qty-cabbage','lbl-cabbage')" />
+            <div style="flex:1">
+              <span>🥬 Cabbage — UGX 4,500/head</span>
+              <input type="text" class="pq" id="qty-cabbage" name="cabbage-qty" placeholder="Qty e.g. 1 head"/>
+            </div>
+          </label>
+          <label class="product-check" id="lbl-spinach">
+            <input type="checkbox" name="spinach" value="yes" onchange="toggleQty(this,'qty-spinach','lbl-spinach')" />
+            <div style="flex:1">
+              <span>🥦 Spinach — UGX 2,500/bundle</span>
+              <input type="text" class="pq" id="qty-spinach" name="spinach-qty" placeholder="Qty e.g. 2 bundles"/>
+            </div>
+          </label>
+          <label class="product-check" id="lbl-carrots">
+            <input type="checkbox" name="carrots" value="yes" onchange="toggleQty(this,'qty-carrots','lbl-carrots')" />
+            <div style="flex:1">
+              <span>🥕 Carrots — UGX 3,000/kg</span>
+              <input type="text" class="pq" id="qty-carrots" name="carrots-qty" placeholder="Qty e.g. 1 kg"/>
+            </div>
+          </label>
+          <label class="product-check" id="lbl-pepper">
+            <input type="checkbox" name="green-pepper" value="yes" onchange="toggleQty(this,'qty-pepper','lbl-pepper')" />
+            <div style="flex:1">
+              <span>🫑 Green Pepper — UGX 3,000/4pcs</span>
+              <input type="text" class="pq" id="qty-pepper" name="green-pepper-qty" placeholder="Qty e.g. 8 pieces"/>
+            </div>
+          </label>
+        </div>
+
+        <div class="form-group" style="margin-top:20px;">
+          <label for="other-items">Other Items / Special Requests</label>
+          <textarea id="other-items" name="special-requests" placeholder="Any other fruits or vegetables not listed above, or special instructions..."></textarea>
+        </div>
+
+        <!-- PAYMENT -->
+        <div class="form-section-title">💳 Payment Method</div>
+        <div class="payment-opts">
+          <div class="pay-opt" id="pay-mtn" onclick="selectPay('mtn')">
+            <div class="pay-icon">📱</div>
+            <p>MTN MoMo</p>
+          </div>
+          <div class="pay-opt" id="pay-airtel" onclick="selectPay('airtel')">
+            <div class="pay-icon">📲</div>
+            <p>Airtel Money</p>
+          </div>
+          <div class="pay-opt" id="pay-cash" onclick="selectPay('cash')">
+            <div class="pay-icon">💵</div>
+            <p>Cash on Delivery</p>
+          </div>
+        </div>
+        <input type="hidden" id="payment-method" name="payment-method" />
+
+        <input type="hidden" name="subject" value="New Order from %{formName}" />
+        <button type="submit" class="submit-btn" style="margin-top:28px;">
+          🛒 Place My Order
+        </button>
+      </form>
+
+      <div class="success-msg" id="successMsg">
+        <h4>✅ Order Placed Successfully!</h4>
+        <p>Thank you! We've received your order. Our team will call or WhatsApp you within 15 minutes to confirm and arrange delivery.</p>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="order-sidebar">
+
+      <div class="sidebar-card">
+        <h3>🚚 Delivery Info</h3>
+        <ul>
+          <li><span class="icon">⏱️</span><span>Same-day delivery for orders before <strong>12:00 PM</strong></span></li>
+          <li><span class="icon">🌅</span><span>Next-morning delivery for orders placed after 12 PM</span></li>
+          <li><span class="icon">📍</span><span>We cover all major areas in <strong>Kampala</strong></span></li>
+          <li><span class="icon">🆓</span><span>Free delivery on orders above <strong>UGX 20,000</strong></span></li>
+          <li><span class="icon">📞</span><span>We'll call/WhatsApp to confirm your order within 15 minutes</span></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>💳 How to Pay</h3>
+        <div class="payment-detail">
+          <h4>📱 MTN Mobile Money</h4>
+          <p>Send to: <strong>0785876082</strong><br/>Name: Umar Barigye<br/>Then send us the transaction ID on WhatsApp.</p>
+        </div>
+        <div class="payment-detail" style="margin-top:12px;">
+          <h4>📲 Airtel Money</h4>
+          <p>Send to: <strong>0743043636</strong><br/>Name: Umar Barigye<br/>Then send us the transaction ID on WhatsApp.</p>
+        </div>
+        <div class="payment-detail" style="margin-top:12px;">
+          <h4>💵 Cash on Delivery</h4>
+          <p>Pay our delivery person when they arrive with your order. Exact change is appreciated!</p>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>💬 Order via WhatsApp</h3>
+        <p style="color:var(--muted);font-size:.92rem;margin-bottom:16px;">Prefer to order on WhatsApp? Just tap the button below and send us your list!</p>
+        <a href="https://wa.me/256743043636?text=Hello%20Fresh%20Basket%20UG!%20I%20would%20like%20to%20place%20an%20order.%20My%20items%20are%3A" class="wa-order-btn" target="_blank">
+          💬 Order on WhatsApp
+        </a>
+      </div>
+
+      <div class="min-order">
+        🛒 Minimum order: <strong>UGX 10,000</strong><br/>
+        Free delivery on orders above <strong>UGX 20,000</strong>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">Fresh<span>Basket</span> UG</span>
+      <p>Uganda's trusted online marketplace for fresh fruits and vegetables. Sourced from local farmers, delivered to your doorstep.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="order.html">Order Now</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="#">📍 Kampala, Uganda</a></li>
+        <li><a href="tel:+256743043636">📞 +256 743043636</a></li>
+        <li><a href="mailto:info@freshbasketug.com">✉️ freshbasketug1@gmail.com</a></li>
+        <li><a href="https://wa.me/256743043636">💬 WhatsApp Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Fresh Basket UG. All rights reserved. | Team Greater Flamingo — Makerere University</p>
+  </div>
+</footer>
+
+<script>
+  let selectedPay = '';
+
+  function selectPay(method) {
+    document.querySelectorAll('.pay-opt').forEach(el => el.classList.remove('selected'));
+    document.getElementById('pay-' + method).classList.add('selected');
+    document.getElementById('payment-method').value = method;
+    selectedPay = method;
+  }
+
+  function toggleQty(checkbox, qtyId, lblId) {
+    const qtyInput = document.getElementById(qtyId);
+    const label = document.getElementById(lblId);
+    if (checkbox.checked) {
+      qtyInput.style.display = 'block';
+      label.classList.add('checked');
+    } else {
+      qtyInput.style.display = 'none';
+      qtyInput.value = '';
+      label.classList.remove('checked');
+    }
+  }
+
+  function placeOrder(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('.submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Placing order...';
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    })
+    .then(function(response) {
+      if (response.ok) {
+        document.getElementById('successMsg').style.display = 'block';
+        form.reset();
+        document.querySelectorAll('.pq').forEach(function(el) { el.style.display = 'none'; });
+        document.querySelectorAll('.product-check').forEach(function(el) { el.classList.remove('checked'); });
+        document.querySelectorAll('.pay-opt').forEach(function(el) { el.classList.remove('selected'); });
+        window.scrollTo({ top: document.getElementById('successMsg').offsetTop - 100, behavior: 'smooth' });
+      } else {
+        alert('Something went wrong. Please try again or order via WhatsApp.');
+      }
+    })
+    .catch(function() {
+      alert('Network error. Please check your connection and try again.');
+    })
+    .finally(function() {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '🛒 Place My Order';
+    });
+  }
+</script>
+</body>
+</html>
