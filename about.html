@@ -1,145 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<marquee>Welcome to Fresh Basket UG – Fresh produce delivered to your doorstep!</marquee>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fresh Basket UG – About Us</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --green:     #2d6a2d;
-      --green-mid: #4a9c3f;
-      --green-lt:  #d4edda;
-      --orange:    #e8821a;
-      --cream:     #fdf9f2;
-      --dark:      #1a2e1a;
-      --text:      #2c3e2c;
-      --muted:     #6b7c6b;
-      --white:     #ffffff;
-      --radius:    14px;
-      --shadow:    0 4px 24px rgba(45,106,45,0.13);
+      --green:#2d6a2d; --green-mid:#4a9c3f; --green-lt:#d4edda;
+      --orange:#e8821a; --cream:#fdf9f2; --dark:#1a2e1a;
+      --text:#2c3e2c; --muted:#6b7c6b; --white:#ffffff;
+      --radius:14px; --shadow:0 4px 24px rgba(45,106,45,0.13);
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);}
+    nav{background:var(--dark);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:70px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.25);}
+    .logo{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--white);}
+    .logo span{color:var(--orange);}
+    nav ul{list-style:none;display:flex;gap:32px;}
+    nav ul a{color:#cde8cd;text-decoration:none;font-size:.95rem;font-weight:500;transition:color .2s;}
+    nav ul a:hover,nav ul a.active{color:var(--orange);}
+    .nav-cta{background:var(--orange);color:var(--white);padding:9px 22px;border-radius:30px;font-weight:600;text-decoration:none;font-size:.9rem;}
+    .page-header{background:linear-gradient(135deg,#1a3d1a,#2d6a2d);padding:70px 6% 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+    .page-header-text .label{color:#9fc99f;font-weight:700;font-size:.82rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+    .page-header-text h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:var(--white);line-height:1.2;margin-bottom:18px;}
+    .page-header-text p{color:#c5e0c5;font-size:1.05rem;line-height:1.75;}
+    .page-header-img img{width:100%;border-radius:20px;height:300px;object-fit:cover;box-shadow:0 16px 48px rgba(0,0,0,.35);}
+    section{padding:80px 6%;}
+    .section-label{color:var(--green-mid);font-weight:700;font-size:.82rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.4rem);color:var(--dark);margin-bottom:16px;}
+    .section-sub{color:var(--muted);font-size:1.02rem;line-height:1.75;max-width:600px;}
+    .story{background:var(--white);}
+    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px;}
+    .story-img img{width:100%;border-radius:16px;height:360px;object-fit:cover;box-shadow:var(--shadow);}
+    .story-text p{color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:18px;}
+    .highlight-box{background:var(--green-lt);border-left:4px solid var(--green);border-radius:10px;padding:20px 24px;margin-top:24px;}
+    .highlight-box p{color:var(--green);font-style:italic;font-size:1.05rem;line-height:1.7;margin:0;font-weight:500;}
+    .mission{background:var(--cream);}
+    .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px;}
+    .mv-card{background:var(--white);border-radius:var(--radius);padding:36px 32px;box-shadow:var(--shadow);border-top:4px solid var(--green);}
+    .mv-card.vision{border-top-color:var(--orange);}
+    .mv-icon{font-size:2.4rem;margin-bottom:16px;}
+    .mv-card h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dark);margin-bottom:12px;}
+    .mv-card p{color:var(--muted);font-size:1rem;line-height:1.75;}
+    .ovp{background:linear-gradient(135deg,#1a3d1a,#2d6a2d);text-align:center;}
+    .ovp .section-label{color:#9fc99f;}
+    .ovp .section-title{color:var(--white);margin:0 auto 20px;}
+    .ovp-box{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:40px 50px;max-width:760px;margin:40px auto 0;}
+    .ovp-box p{color:var(--white);font-size:1.25rem;line-height:1.75;font-style:italic;}
+    .ovp-box .author{color:var(--orange);font-weight:700;margin-top:18px;font-size:1rem;font-style:normal;}
+    .values{background:var(--white);}
+    .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px;margin-top:48px;}
+    .value-card{text-align:center;padding:32px 22px;border-radius:var(--radius);background:var(--cream);transition:transform .2s,box-shadow .2s;}
+    .value-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+    .value-icon{font-size:2.8rem;margin-bottom:14px;}
+    .value-card h4{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:8px;}
+    .value-card p{color:var(--muted);font-size:.9rem;line-height:1.65;}
 
-    nav {
-      background: var(--dark); padding: 0 6%;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 70px; position: sticky; top: 0; z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
-    }
-    .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--white); }
-    .logo span { color: var(--orange); }
-    nav ul { list-style: none; display: flex; gap: 32px; }
-    nav ul a { color: #cde8cd; text-decoration: none; font-size: .95rem; font-weight: 500; transition: color .2s; }
-    nav ul a:hover, nav ul a.active { color: var(--orange); }
-    .nav-cta { background: var(--orange); color: var(--white); padding: 9px 22px; border-radius: 30px; font-weight: 600; text-decoration: none; font-size: .9rem; }
-    .nav-cta:hover { background: #c96e10; }
+    /* TEAM SECTION */
+    .team{background:var(--cream);}
+    .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px;margin-top:48px;}
+    .team-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.06);transition:transform .2s;}
+    .team-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
+    .team-photo{width:100%;height:200px;object-fit:cover;object-position:top;display:block;}
+    .team-photo-placeholder{width:100%;height:200px;background:linear-gradient(135deg,var(--green-lt),var(--green-mid));display:flex;align-items:center;justify-content:center;font-size:4rem;}
+    .team-info{padding:18px 16px 20px;}
+    .team-info h4{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
+    .team-info .role{font-size:.85rem;color:var(--green);font-weight:600;margin-bottom:4px;}
+    .team-info .reg{font-size:.78rem;color:var(--muted);}
 
-    /* PAGE HEADER */
-    .page-header {
-      background: linear-gradient(135deg, #1a3d1a, #2d6a2d);
-      padding: 70px 6% 60px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-    }
-    .page-header-text .label { color: #9fc99f; font-weight: 700; font-size: .82rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
-    .page-header-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--white); line-height: 1.2; margin-bottom: 18px; }
-    .page-header-text p { color: #c5e0c5; font-size: 1.05rem; line-height: 1.75; }
-    .page-header-img img { width: 100%; border-radius: 20px; height: 300px; object-fit: cover; box-shadow: 0 16px 48px rgba(0,0,0,.35); }
-
-    /* SECTIONS */
-    section { padding: 80px 6%; }
-    .section-label { color: var(--green-mid); font-weight: 700; font-size: .82rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--dark); margin-bottom: 16px; }
-    .section-sub { color: var(--muted); font-size: 1.02rem; line-height: 1.75; max-width: 600px; }
-
-    /* STORY */
-    .story { background: var(--white); }
-    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 48px; }
-    .story-img img { width: 100%; border-radius: 16px; height: 360px; object-fit: cover; box-shadow: var(--shadow); }
-    .story-text p { color: var(--muted); font-size: 1rem; line-height: 1.8; margin-bottom: 18px; }
-    .story-text p:last-child { margin-bottom: 0; }
-    .highlight-box {
-      background: var(--green-lt); border-left: 4px solid var(--green); border-radius: 10px;
-      padding: 20px 24px; margin-top: 24px;
-    }
-    .highlight-box p { color: var(--green); font-style: italic; font-size: 1.05rem; line-height: 1.7; margin: 0; font-weight: 500; }
-
-    /* MISSION / VISION */
-    .mission { background: var(--cream); }
-    .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 48px; }
-    .mv-card {
-      background: var(--white); border-radius: var(--radius); padding: 36px 32px;
-      box-shadow: var(--shadow); border-top: 4px solid var(--green);
-    }
-    .mv-card.vision { border-top-color: var(--orange); }
-    .mv-icon { font-size: 2.4rem; margin-bottom: 16px; }
-    .mv-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--dark); margin-bottom: 12px; }
-    .mv-card p { color: var(--muted); font-size: 1rem; line-height: 1.75; }
-
-    /* OVP */
-    .ovp { background: linear-gradient(135deg, #1a3d1a, #2d6a2d); text-align: center; }
-    .ovp .section-label { color: #9fc99f; }
-    .ovp .section-title { color: var(--white); margin: 0 auto 20px; }
-    .ovp-box {
-      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
-      border-radius: 20px; padding: 40px 50px; max-width: 760px; margin: 40px auto 0;
-    }
-    .ovp-box p { color: var(--white); font-size: 1.25rem; line-height: 1.75; font-style: italic; }
-    .ovp-box .author { color: var(--orange); font-weight: 700; margin-top: 18px; font-size: 1rem; font-style: normal; }
-
-    /* VALUES */
-    .values { background: var(--white); }
-    .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 24px; margin-top: 48px; }
-    .value-card {
-      text-align: center; padding: 32px 22px; border-radius: var(--radius);
-      background: var(--cream); transition: transform .2s, box-shadow .2s;
-    }
-    .value-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-    .value-icon { font-size: 2.8rem; margin-bottom: 14px; }
-    .value-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-    .value-card p { color: var(--muted); font-size: .9rem; line-height: 1.65; }
-
-    /* TEAM */
-    .team { background: var(--cream); }
-    .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 22px; margin-top: 48px; }
-    .team-card {
-      background: var(--white); border-radius: var(--radius); padding: 28px 18px; text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06); transition: transform .2s;
-    }
-    .team-card:hover { transform: translateY(-4px); }
-    .team-avatar {
-      width: 72px; height: 72px; border-radius: 50%; background: var(--green-lt);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; margin: 0 auto 14px; border: 3px solid var(--green-lt);
-    }
-    .team-card h4 { font-size: .95rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
-    .team-card p { font-size: .8rem; color: var(--muted); }
-    .team-card .reg { font-size: .75rem; color: var(--green-mid); margin-top: 4px; }
-
-    /* CTA */
-    .cta-banner { background: var(--orange); padding: 70px 6%; text-align: center; }
-    .cta-banner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--white); margin-bottom: 14px; }
-    .cta-banner p { color: rgba(255,255,255,.9); font-size: 1.05rem; margin-bottom: 32px; }
-    .cta-banner a { background: var(--white); color: var(--orange); padding: 14px 36px; border-radius: 40px; font-weight: 700; text-decoration: none; font-size: 1rem; }
-
-    footer { background: var(--dark); padding: 60px 6% 30px; color: #9fc99f; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 40px; }
-    .footer-brand .logo { font-size: 1.4rem; display: block; margin-bottom: 14px; }
-    .footer-brand p { font-size: .93rem; line-height: 1.7; color: #7a9a7a; }
-    footer h4 { color: var(--white); font-size: .95rem; margin-bottom: 16px; font-weight: 700; }
-    footer ul { list-style: none; }
-    footer ul li { margin-bottom: 9px; }
-    footer ul a { color: #7a9a7a; text-decoration: none; font-size: .9rem; transition: color .2s; }
-    footer ul a:hover { color: var(--orange); }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; text-align: center; font-size: .85rem; color: #5a7a5a; }
-
-    @media(max-width: 768px) {
-      .page-header, .story-grid, .mv-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-      nav ul { display: none; }
-      .ovp-box { padding: 28px 24px; }
+    .cta-banner{background:var(--orange);padding:70px 6%;text-align:center;}
+    .cta-banner h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.4rem);color:var(--white);margin-bottom:14px;}
+    .cta-banner p{color:rgba(255,255,255,.9);font-size:1.05rem;margin-bottom:32px;}
+    .cta-banner a{background:var(--white);color:var(--orange);padding:14px 36px;border-radius:40px;font-weight:700;text-decoration:none;font-size:1rem;}
+    footer{background:var(--dark);padding:60px 6% 30px;color:#9fc99f;}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px;margin-bottom:40px;}
+    .footer-brand .logo{font-size:1.4rem;display:block;margin-bottom:14px;}
+    .footer-brand p{font-size:.93rem;line-height:1.7;color:#7a9a7a;}
+    footer h4{color:var(--white);font-size:.95rem;margin-bottom:16px;font-weight:700;}
+    footer ul{list-style:none;}
+    footer ul li{margin-bottom:9px;}
+    footer ul a{color:#7a9a7a;text-decoration:none;font-size:.9rem;transition:color .2s;}
+    footer ul a:hover{color:var(--orange);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;text-align:center;font-size:.85rem;color:#5a7a5a;}
+    @media(max-width:768px){
+      .page-header,.story-grid,.mv-grid{grid-template-columns:1fr;}
+      .footer-grid{grid-template-columns:1fr;gap:30px;}
+      nav ul{display:none;}
+      .ovp-box{padding:28px 24px;}
     }
   </style>
 </head>
@@ -157,7 +105,6 @@
   <a href="order.html" class="nav-cta">Order Now</a>
 </nav>
 
-<!-- PAGE HEADER -->
 <div class="page-header">
   <div class="page-header-text">
     <p class="label">About Us 🌿</p>
@@ -179,7 +126,7 @@
     </div>
     <div class="story-text">
       <p>Fresh Basket UG was founded by a passionate team of Business Administration students at Makerere University's College of Business and Management Sciences.</p>
-      <p>We noticed a common problem among our fellow students, working professionals, and families in Kampala — getting fresh, affordable produce meant spending hours at crowded markets, often with no guarantee of quality. At the same time, local farmers struggled to reach urban customers directly.</p>
+      <p>We noticed a common problem among our fellow students, working professionals, and families in Kampala — getting fresh, affordable produce meant spending hours at crowded markets, often with no guarantee of quality.</p>
       <p>We created Fresh Basket UG to bridge that gap. Our platform connects urban consumers directly to trusted local farmers, cutting out the middlemen and making fresh produce affordable, accessible, and convenient for everyone.</p>
       <div class="highlight-box">
         <p>"Our mission is simple — no one in Kampala should have to choose between convenience and eating fresh. We make both possible."</p>
@@ -221,57 +168,138 @@
   <p class="section-label">Our Values</p>
   <h2 class="section-title">What We Stand For</h2>
   <div class="values-grid">
-    <div class="value-card">
-      <div class="value-icon">🥬</div>
-      <h4>Freshness First</h4>
-      <p>We never compromise on quality. Every item is sourced fresh and delivered same-day where possible.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-icon">🤝</div>
-      <h4>Support Local Farmers</h4>
-      <p>We partner directly with Ugandan farmers, giving them fair prices and access to urban markets.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-icon">⚡</div>
-      <h4>Speed &amp; Convenience</h4>
-      <p>We value your time. Our platform makes ordering simple and our delivery is fast and reliable.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-icon">💚</div>
-      <h4>Affordability</h4>
-      <p>By eliminating middlemen, we keep prices low and make healthy eating accessible to everyone.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-icon">🔒</div>
-      <h4>Trust &amp; Transparency</h4>
-      <p>Honest pricing, real product descriptions, and reliable service — always.</p>
-    </div>
+    <div class="value-card"><div class="value-icon">🥬</div><h4>Freshness First</h4><p>We never compromise on quality. Every item is sourced fresh and delivered same-day where possible.</p></div>
+    <div class="value-card"><div class="value-icon">🤝</div><h4>Support Local Farmers</h4><p>We partner directly with Ugandan farmers, giving them fair prices and access to urban markets.</p></div>
+    <div class="value-card"><div class="value-icon">⚡</div><h4>Speed &amp; Convenience</h4><p>We value your time. Our platform makes ordering simple and our delivery is fast and reliable.</p></div>
+    <div class="value-card"><div class="value-icon">💚</div><h4>Affordability</h4><p>By eliminating middlemen, we keep prices low and make healthy eating accessible to everyone.</p></div>
+    <div class="value-card"><div class="value-icon">🔒</div><h4>Trust &amp; Transparency</h4><p>Honest pricing, real product descriptions, and reliable service — always.</p></div>
   </div>
 </section>
 
-<!-- TEAM -->
+<!-- TEAM — using real uploaded photos -->
 <section class="team">
   <p class="section-label">Meet the Team</p>
   <h2 class="section-title">Team Greater Flamingo</h2>
   <p class="section-sub">We are 3rd-year Bachelor of Business Administration students at Makerere University, bringing this business concept to life.</p>
+
   <div class="team-grid">
-    <div class="team-card"><div class="team-avatar"><img src="barigye.jpg" width="105"></div><h4>Barigye Umaru</h4><p>Team Lead</p><p class="reg">+256743043636</p></div>
-    <div class="team-card"><div class="team-avatar"><img src="Sheila.jpeg" width="105" height="105"></div><h4>Nambalirwa Sheila</h4><p>Marketing</p><p class="reg">+256756848876</p></div>
-    <div class="team-card"><div class="team-avatar"><img src="Vanso.jpeg" width="110" height="105"></div><h4>Ssali Steven</h4><p>Systems Administrator</p><p class="reg">+256701454062</p></div>
-    <div class="team-card"><div class="team-avatar"><img src="Desire.jpeg" width="105" height="105"></div><h4>Olindo Desire</h4><p>Operations</p><p class="reg">+256761302615</p></div>
-    <div class="team-card"><div class="team-avatar"><img src="Daren.jpeg" width="105" height="105"></div><h4>Asiimwe Daren</h4><p>Finance</p><p class="reg">+256776063208</p></div>
-    <div class="team-card"><div class="team-avatar"><img src="Hanifah.jpeg" width="105" height="105"></div><h4>Namayengo Hanifah</h4><p>Content</p><p class="reg">+256753024537</p></div>
-    <div class="team-card"><div class="team-avatar"><img src="Victoria.jpeg" width="105"></div><h4>Nabukenya Victoria</h4><p>Research</p><p class="reg">+256754024431</p></div>
-    <div class="team-card"><div class="team-avatar"><img src="Trevor.jpeg" width="105"></div><h4>Sekatawa Trevor</h4><p>Logistics</p><p class="reg">+256740349634</p></div>
-    <div class="team-card"><div class="team-avatar"><img src="Harry.jpeg" width="115" height="105"></div><h4>Ssekyanzi Harry</h4><p>IT Support</p><p class="reg">+256788758878</p></div>
-    <div class="team-card"><div class="team-avatar"><img src="Swizeen.jpeg" width="105"></div><h4>Karungi Swizeen</h4><p>Customer Care</p><p class="reg">+256782506969</p></div>
+
+    <div class="team-card">
+      <img src="desire.jpeg" alt="Olindo Desire" class="team-photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="team-photo-placeholder" style="display:none;">😊</div>
+      <div class="team-info">
+        <h4>Olindo Desire</h4>
+        <p class="role">Team Lead</p>
+        <p class="reg">23/U/16764/PS</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img src="sheila.jpeg" alt="Nambalirwa Sheila" class="team-photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="team-photo-placeholder" style="display:none;">😊</div>
+      <div class="team-info">
+        <h4>Nambalirwa Sheila</h4>
+        <p class="role">Marketing</p>
+        <p class="reg">23/U/3873/PS</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img src="vanso.jpeg" alt="Ssali Steven" class="team-photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="team-photo-placeholder" style="display:none;">😊</div>
+      <div class="team-info">
+        <h4>Ssali Steven</h4>
+        <p class="role">Web Design</p>
+        <p class="reg">23/U/17338/PS</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img src="barigye.jpg" alt="Barigye Umaru" class="team-photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="team-photo-placeholder" style="display:none;">😊</div>
+      <div class="team-info">
+        <h4>Barigye Umaru</h4>
+        <p class="role">Operations</p>
+        <p class="reg">23/U/25053</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img src="daren.jpeg" alt="Asiimwe Daren" class="team-photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="team-photo-placeholder" style="display:none;">😊</div>
+      <div class="team-info">
+        <h4>Asiimwe Daren</h4>
+        <p class="role">Finance</p>
+        <p class="reg">23/U/06656/PS</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img src="hanifah.jpeg" alt="Namayengo Hanifah" class="team-photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="team-photo-placeholder" style="display:none;">😊</div>
+      <div class="team-info">
+        <h4>Namayengo Hanifah</h4>
+        <p class="role">Content</p>
+        <p class="reg">23/U/3871/PS</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img src="victoria.jpeg" alt="Nabukenya Victoria" class="team-photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="team-photo-placeholder" style="display:none;">😊</div>
+      <div class="team-info">
+        <h4>Nabukenya Victoria</h4>
+        <p class="role">Research</p>
+        <p class="reg">22/U/3502/PS</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img src="trevor.jpeg" alt="Sekatawa Trevor" class="team-photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="team-photo-placeholder" style="display:none;">😊</div>
+      <div class="team-info">
+        <h4>Sekatawa Trevor</h4>
+        <p class="role">Logistics</p>
+        <p class="reg">23/U/17235/PS</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img src="harry.jpeg" alt="Ssekyanzi Harry" class="team-photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="team-photo-placeholder" style="display:none;">😊</div>
+      <div class="team-info">
+        <h4>Ssekyanzi Harry</h4>
+        <p class="role">IT Support</p>
+        <p class="reg">23/U/082</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <img src="swizeen.jpeg" alt="Karungi Swizeen" class="team-photo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="team-photo-placeholder" style="display:none;">😊</div>
+      <div class="team-info">
+        <h4>Karungi Swizeen</h4>
+        <p class="role">Customer Care</p>
+        <p class="reg">23/U/09083/PS</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- CTA -->
 <div class="cta-banner">
   <h2>Ready to Order Fresh Produce?</h2>
-  <p>Experience the Fresh Basket UG difference — quality, convenience, and taste delivered to your doorstep.</p>
+  <p>Experience the Fresh Basket UG difference — quality, convenience, and taste delivered to your door.</p>
   <a href="order.html">Place Your Order Now</a>
 </div>
 
@@ -295,9 +323,9 @@
       <h4>Contact Us</h4>
       <ul>
         <li><a href="#">📍 Kampala, Uganda</a></li>
-        <li><a href="tel:+256743043636">📞 +256 743043636</a></li>
-        <li><a href="mailto:info@freshbasketug.com">✉️ freshbasketug1@gmail.com</a></li>
-        <li><a href="https://wa.me/256743043636">💬 WhatsApp Us</a></li>
+        <li><a href="tel:+256700000000">📞 +256 700 000 000</a></li>
+        <li><a href="mailto:freshbasketug1@gmail.com">✉️ freshbasketug1@gmail.com</a></li>
+        <li><a href="https://wa.me/256700000000">💬 WhatsApp Us</a></li>
       </ul>
     </div>
   </div>
